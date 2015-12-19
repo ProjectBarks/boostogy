@@ -13,11 +13,9 @@ core.onInit(function () {
         showPopup(function (data) {
             usersToRemove.forEach(function (user) {
                 cache.removeUser(user);
-                console.log("Removing: " + user);
-            });
+Re            });
             Object.keys(data).forEach(function (key) {
                 cache.set(key, data[key]);
-                console.log("Setting: " + key);
             });
         });
 
