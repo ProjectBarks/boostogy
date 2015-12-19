@@ -1,8 +1,7 @@
-var storage = chrome.storage.local;
-
 var cache = function () {
-    var cacheStore = {};
-    var user = "";
+    var USERS = "users";
+    var storage = chrome.storage.local;
+    var cachedUser = null;
 
     var throwIfInvalid = function (key) {
         if (typeof key !== "string") {
@@ -19,66 +18,100 @@ var cache = function () {
         return pair;
     };
 
-    this.setUser = function (id) {
-        user = id;
+    var getUser = function(callback) {
+        if (!cachedUser) {
+            var id = setInterval(function() {
+               if (!cachedUser) {
+                   return;
+               }
+                callback(cachedUser);
+                clearInterval(id);
+            }, 50);
+        } else {
+            callback(cachedUser);
+        }
     };
 
-    this.set = function (key, value) {
-        if (user.length <= 0) {
-            return;
+    var updateUser = function (user) {
+        storage.set(getPair(JSON.parse(user["id"]), JSON.stringify(user)));
+    };
+
+    var getSingle = function (key, callback, def) {
+        if (!def) {
+            def = null;
         }
+        storage.get(key, function (data) {
+            if (data[key] !== undefined) {
+                callback(JSON.parse(data[key]));
+            } else {
+                callback(def);
+            }
+        });
+    };
 
+    this.reset = function() {
+        storage.clear();
+    };
+
+    this.getUserIds = function(callback) {
+        getSingle(USERS, callback, []);
+    };
+
+    this.getUser = function(id, callback){
+        getSingle(id, callback);
+    };
+
+    this.initUser = function(id, name) {
+        this.getUser(id, function (user) {
+            if (user) {
+                cachedUser = user;
+            } else {
+                cachedUser = {id: JSON.stringify(id), name: JSON.stringify(name || "Unknown Name [" + id + "]")};
+                updateUser(cachedUser);
+                this.getUserIds(function (users) {
+                    users.push(id);
+                    storage.set(getPair(USERS, JSON.stringify(users)));
+                });
+            }
+            console.log(cachedUser);
+        });
+    };
+    
+    this.set = function (key, value) {
         throwIfInvalid(key);
-
         var serialized = JSON.stringify(value);
 
-        if (cacheStore[user] && cacheStore[user] === serialized) {
-            return;
-        }
-
-        storage.set(getPair(userKey, serialized), function () {
+        getUser(function(user) {
+            if (user[key] !== undefined && user[key] === serialized) {
+                return;
+            }
+            user[key] = serialized;
+            updateUser(user);
         });
-        cacheStore[userKey] = serialized;
     };
 
     this.getMultiple = function (keysMapDefaults, callback) {
-        if (user.length <= 0) {
-            callback(keysMapDefaults);
-            return;
-        }
-
-        var results = {};
-        var keysToSearch = {};
-        var immediateResults = true;
-
         Object.keys(keysMapDefaults).forEach(function (key) {
             throwIfInvalid(key);
-            var userKey = cache.getUserKey(key);
-            if (cache.cache_store[userKey]) {
-                results[key] = JSON.parse(cache.cache_store[userKey]);
-            } else {
-                keysToSearch[userKey] = {"key": key, "def": keysMapDefaults[key]};
-                immediateResults = false;
-            }
         });
 
-        if (immediateResults) {
-            callback(results);
-            return;
-        }
+        getUser(function (user) {
+            var results = {};
+            var changed = false;
 
-        storage.get(Object.keys(keysToSearch), function (searchResults) {
-            Object.keys(keysToSearch).forEach(function (userKey) {
-                var info = keysToSearch[userKey];
-                var result = info.def;
-                if (searchResults[userKey] !== undefined) {
-                    result = JSON.parse(searchResults[userKey]);
+            Object.keys(keysMapDefaults).forEach(function (key) {
+                if (user[key]) {
+                    results[key] = JSON.parse(user[key]);
+                } else {
+                    results[key] = keysMapDefaults[key];
+                    user[key] = JSON.stringify(keysMapDefaults[key]);
+                    changed = true;
                 }
-
-                results[info.key] = result;
-                cache.cache_store[userKey] = JSON.stringify(result);
-
             });
+
+            if (changed) {
+                updateUser(user);
+            }
 
             callback(results);
         });

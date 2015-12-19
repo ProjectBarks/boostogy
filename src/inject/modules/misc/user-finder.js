@@ -3,5 +3,5 @@ core.onInit(function() {
     if (profile.size() <= 0){
         return;
     }
-    cache.setUser(profile.attr("href").substring(6));
+    cache.initUser(profile.attr("href").substring(6), profile.text());
 });
