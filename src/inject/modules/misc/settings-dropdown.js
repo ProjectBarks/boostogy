@@ -13,7 +13,7 @@ core.onInit(function () {
         showPopup(function (data) {
             usersToRemove.forEach(function (user) {
                 cache.removeUser(user);
-Re            });
+            });
             Object.keys(data).forEach(function (key) {
                 cache.set(key, data[key]);
             });
@@ -40,7 +40,7 @@ Re            });
         }
 
         cache.getMultiple({auto_scroll: true, show_circles: true}, function (_) {
-            updateCheckbox("auto_scroll", _);
+            updateCheckbox("auto_load", _);
             updateCheckbox("show_circles", _);
         });
         event.preventDefault();
