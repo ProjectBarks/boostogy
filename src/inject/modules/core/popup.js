@@ -1,24 +1,24 @@
 var lastPopup = new Popup(null, null, null, null, null);
 
 function Popup(title, body, ok, cancel, onOkListener) {
-    this._tempRemove = null;
-    this._visible = false;
+    var tempRemove = null;
+    var visible = false;
 
     this.isVisible = function () {
-        return this._visible;
+        return visible;
     };
 
     this.close = function () {
         if (!lastPopup.isVisible()) return;
-        this._tempRemove.remove();
-        this._visible = false;
+        tempRemove.remove();
+        visible = false;
     };
 
     this.show = function () {
         if (lastPopup.isVisible()) {
             throw new Error("Popup already visible!");
         }
-        this._visible = true;
+        visible = true;
         lastPopup = this;
         var _this = this;
 
@@ -38,13 +38,18 @@ function Popup(title, body, ok, cancel, onOkListener) {
             });
             delete values[""];
 
-            (onOkListener || function (_) {
-                console.log(_)
-            })(values);
+            (onOkListener || function () {})(values);
             event.preventDefault();
             _this.close();
         });
+        $(document).bind("keydown", function(event) {
+            if (event.keyCode != 27) {
+                return;
+            }
+            _this.close();
+            $(this).unbind("keydown", arguments.callee);
+        });
         $("body").append(popup);
-        this._tempRemove = popup;
+        tempRemove = popup;
     };
 }

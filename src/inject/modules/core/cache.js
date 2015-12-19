@@ -73,10 +73,9 @@ var cache = function () {
                     storage.set(getPair(USERS, JSON.stringify(users)));
                 });
             }
-            console.log(cachedUser);
         });
     };
-    
+
     this.set = function (key, value) {
         throwIfInvalid(key);
         var serialized = JSON.stringify(value);

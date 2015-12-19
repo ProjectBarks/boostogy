@@ -13,7 +13,7 @@
     "annotate/sidebar",
     "misc/autoload",
     "misc/popup-scroll-lock",
-    "settings/dropdown",
+    "misc/settings-dropdown",
     "profile/squarer",
     "profile/circlizer"
 ]

@@ -2,7 +2,7 @@
   "name": "Boostogy",
   "version": "1.9.0",
   "manifest_version": 2,
-  "description": "Boostogy updates schoology to be more user friend and intuitive!",
+  "description": "Boostogy updates schoology to be more user friendly and intuitive!",
   "icons": {
     "16": "resources/icons/icon16.png",
     "48": "resources/icons/icon48.png",

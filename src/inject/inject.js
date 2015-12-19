@@ -46,7 +46,6 @@ $(function () {
 
     var includes = core.executeJS("src/inject/includes.js");
     for (var i = 0; i < includes.length; i++) {
-        console.log("Loading: " + includes[i]);
         eval(core.loadFile("src/inject/modules/" + includes[i] + ".js"));
     }
 
