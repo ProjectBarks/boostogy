@@ -1,0 +1,17 @@
+.markoutable {
+    cursor: pointer;
+}
+
+.markoutable > .form-radio-answer, .markoutable > .form-checkbox-answer {
+    background-size: 100% 100%;
+}
+
+/*noinspection CssUnknownTarget*/
+.markoutable:not(.marked):hover > .form-radio-answer, .markoutable:not(.marked):hover > .form-checkbox-answer {
+    background-image: url('chrome-extension://__MSG_@@extension_id__/resources/images/markout-opaque.png')
+}
+
+/*noinspection CssUnknownTarget*/
+.markoutable.marked > .form-radio-answer, .markoutable.marked > .form-checkbox-answer {
+    background-image: url('chrome-extension://__MSG_@@extension_id__/resources/images/markout-solid.png');
+}

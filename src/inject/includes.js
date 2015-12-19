@@ -1,0 +1,19 @@
+[
+    "core/cache",
+    "core/popup",
+    "misc/user-finder",
+    "course/sorter",
+    "course/settings",
+    "course/alias",
+    "course/hider",
+    "annotate/note",
+    "annotate/highlight",
+    "annotate/disable-toggle",
+    "annotate/markout",
+    "annotate/sidebar",
+    "misc/autoload",
+    "misc/popup-scroll-lock",
+    "settings/dropdown",
+    "profile/squarer",
+    "profile/circlizer"
+]

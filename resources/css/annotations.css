@@ -1,0 +1,47 @@
+.annotation-highlight {
+    background-color: yellow;
+}
+
+.annotation-bold {
+    font-weight: bold;
+}
+
+.annotation-underline {
+    text-decoration: underline;
+}
+
+.annotation-strike {
+    text-decoration: line-through;
+}
+
+.annotation-delete {
+    position: absolute;
+    z-index: 1000;
+    background: #ffffff;
+    border: 1px solid #c7c7c7;
+    width: 30px;
+    height: 30px;
+}
+
+.annotation-delete:after, .annotation-delete:before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.annotation-delete:after {
+    border: 5px rgba(255, 255, 255, 0);
+    border-top-color: #ffffff;
+    margin-left: -5px;
+}
+
+.annotation-delete:before {
+    border: 6px rgba(199, 199, 199, 0);
+    border-top-color: #c7c7c7;
+    margin-left: -6px;
+}

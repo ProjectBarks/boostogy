@@ -1,0 +1,57 @@
+.note {
+    z-index: 100;
+    position: absolute;
+    min-width: 125px;
+    min-height: 125px;
+    width: 125px;
+    height: 125px;
+    background-color: #fff;
+    border: 1px solid #333;
+    display: block;
+    -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+    transition: transform .2s ease-in-out;
+}
+
+.note.ui-draggable-dragging {
+    transform: scale(1.1);
+}
+
+.note-header {
+    min-height: 30px;
+    background-color: #333;
+    text-align: right;
+    line-height: 30px;
+}
+
+.note-remove {
+    margin-right: 4px;
+    line-height: 28px;
+    font-size: 24px;
+    font-weight: bolder;
+    color: #666;
+    float: right;
+    text-decoration: none;
+}
+
+.note-remove:hover {
+    color: #EE5A43;
+}
+
+.note-text, .note-text:focus {
+    margin: 0;
+    background: none;
+    font-size: 12px;
+    width: 100%;
+    height: calc(100% - 45px);
+    resize: none;
+    padding: 5px;
+    box-sizing: border-box;
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}

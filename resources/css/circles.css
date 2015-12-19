@@ -1,0 +1,11 @@
+.profile-picture > img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-picture > img.imagecache-profile_reg {
+    object-fit: contain;
+    background-color: #D5D5D5;
+    border: 4px solid #c7c7c7;
+    margin: -4px;
+}

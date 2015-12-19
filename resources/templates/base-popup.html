@@ -1,0 +1,19 @@
+<div id="popups-overlay" style="opacity: 0.4; width: 100vw; height: 100vh; position: fixed;"></div>
+<div class="popups-box popups-small" style="top: 193px; left: calc(100vw / 2); margin-left: -225px; position: fixed;">
+    <div class="popups-title">
+        <div class="popups-close"><a href="#"><span class="visually-hidden">Close</span></a></div>
+        <div class="title">${title}</div>
+        <div class="clear-block"></div>
+    </div>
+    <div class="popups-body">
+        <form role="form" style="margin: 20px 10px 20px 10px;">
+            <div>
+                ${body}
+                <div class="submit-buttons">
+                    <span class="submit-span-wrapper"><input type="submit" value="${ok}" class="form-submit">
+                    </span><a class="cancel-btn">${cancel}</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
