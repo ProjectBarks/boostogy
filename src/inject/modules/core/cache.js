@@ -1,7 +1,8 @@
-var cache = function () {
+function Cache() {
     var USERS = "users";
     var storage = chrome.storage.local;
     var cachedUser = null;
+    var currentUserId = 0;
 
     var throwIfInvalid = function (key) {
         if (typeof key !== "string") {
@@ -18,12 +19,12 @@ var cache = function () {
         return pair;
     };
 
-    var getUser = function(callback) {
+    var getUser = function (callback) {
         if (!cachedUser) {
-            var id = setInterval(function() {
-               if (!cachedUser) {
-                   return;
-               }
+            var id = setInterval(function () {
+                if (!cachedUser) {
+                    return;
+                }
                 callback(cachedUser);
                 clearInterval(id);
             }, 50);
@@ -49,30 +50,48 @@ var cache = function () {
         });
     };
 
-    this.reset = function() {
+    this.reset = function () {
         storage.clear();
     };
-
-    this.getUserIds = function(callback) {
+    this.getUserIds = function (callback) {
         getSingle(USERS, callback, []);
     };
 
-    this.getUser = function(id, callback){
+    this.getUser = function (id, callback) {
         getSingle(id, callback);
     };
 
-    this.initUser = function(id, name) {
+    this.removeUser = function (id) {
+        this.getUserIds(function (users) {
+            if (users.indexOf(id) == -1) {
+                return;
+            }
+            users.splice(users.indexOf(id), 1);
+            storage.remove(id);
+            storage.set(getPair(USERS, JSON.stringify(users)));
+        });
+    };
+
+    this.getCurrentUserId = function () {
+        return this.currentUserId;
+    };
+
+    this.initUser = function (id, name) {
+        this.currentUserId = id;
         this.getUser(id, function (user) {
             if (user) {
                 cachedUser = user;
             } else {
                 cachedUser = {id: JSON.stringify(id), name: JSON.stringify(name || "Unknown Name [" + id + "]")};
                 updateUser(cachedUser);
-                this.getUserIds(function (users) {
-                    users.push(id);
-                    storage.set(getPair(USERS, JSON.stringify(users)));
-                });
             }
+            cache.getUserIds(function (users) {
+                if (users.indexOf(id) != -1) {
+                    return;
+                }
+                users.push(id);
+                storage.set(getPair(USERS, JSON.stringify(users)));
+            });
         });
     };
 
@@ -80,7 +99,7 @@ var cache = function () {
         throwIfInvalid(key);
         var serialized = JSON.stringify(value);
 
-        getUser(function(user) {
+        getUser(function (user) {
             if (user[key] !== undefined && user[key] === serialized) {
                 return;
             }
@@ -122,4 +141,6 @@ var cache = function () {
         });
     };
     return this;
-}();
+}
+
+var cache = new Cache();

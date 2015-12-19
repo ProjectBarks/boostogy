@@ -34,15 +34,17 @@ function Popup(title, body, ok, cancel, onOkListener) {
         popup.find("form").submit(function (event) {
             var values = {};
             popup.find(":input").each(function () {
-                values[this.name] = $(this).val()
+                var item = $(this);
+                values[this.name] = item.is(":checkbox, :radio") ? item.is(":checked") : item.val();
             });
             delete values[""];
 
-            (onOkListener || function () {})(values);
+            (onOkListener || function () {
+            })(values);
             event.preventDefault();
             _this.close();
         });
-        $(document).bind("keydown", function(event) {
+        $(document).bind("keydown", function (event) {
             if (event.keyCode != 27) {
                 return;
             }

@@ -31,7 +31,7 @@ var core = {
     },
     readTemplate: function (path) {
         var code = $(this.loadFile(path));
-        code.find("img").each(function() {
+        code.find("img").each(function () {
             $(this).attr("src", chrome.extension.getURL($(this).attr("src")));
         });
         return code.prop("outerHTML");

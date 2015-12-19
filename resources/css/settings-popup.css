@@ -1,0 +1,36 @@
+.boostogy-settings h3 {
+    font-size: 14px;
+    padding: 5px 0;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.boostogy-settings .form-group {
+    margin-top: 5px;
+}
+
+.boostogy-settings .user-list li {
+    border-bottom: 1px solid #ECECEC;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.boostogy-settings .user-list li .you {
+    font-weight: bold;
+    color: #FF4F4F;
+}
+
+.boostogy-settings .user-list li .delete {
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 13px;
+    width: 13px;
+    height: 13px;
+    margin-top: 1px;
+    cursor: pointer;
+}
+
+.boostogy-settings .user-list li .delete:hover {
+    background-color: #FF4F4F;
+    color: white;
+}
