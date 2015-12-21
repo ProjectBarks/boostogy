@@ -1,6 +1,6 @@
 function Cache() {
     var USERS = "users";
-    var storage = chrome.storage.local;
+    var storage = chrome.storage.sync;
     var cachedUser = null;
     var currentUserId = 0;
 
