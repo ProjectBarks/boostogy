@@ -39,7 +39,7 @@ core.onInit(function () {
             popup.find("#" + id).prop("checked", results[id]);
         }
 
-        cache.getMultiple({auto_scroll: true, show_circles: true}, function (_) {
+        cache.getMultiple({auto_load: true, show_circles: true}, function (_) {
             updateCheckbox("auto_load", _);
             updateCheckbox("show_circles", _);
         });
