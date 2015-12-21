@@ -17,6 +17,7 @@ core.onInit(function () {
             Object.keys(data).forEach(function (key) {
                 cache.set(key, data[key]);
             });
+            document.location.reload(false);
         });
 
         var popup = $(".boostogy-settings");
