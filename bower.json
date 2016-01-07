@@ -7,12 +7,16 @@
   },
   "install" : {
     "path": {
-      "js": "extension/libs/vendor/",
+      "js": "extension/libs/vendors",
       "css": "extension/resources/css"
     },
     "sources": {
       "jquery-ui": [
-        "components/jquery-ui/ui/jquery-ui.custom.js"
+        "bower/jquery/dist/jquery.js",
+        "bower/jquery-ui/jquery-ui.js",
+        "bower/rangy/rangy-core.js",
+        "bower/rangy/rangy-classapplier.js",
+        "bower/rangy/rangy-highlighter.js"
       ]
     }
   }
