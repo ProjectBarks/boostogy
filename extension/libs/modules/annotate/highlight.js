@@ -1,8 +1,7 @@
-core.onInit(function () {
+app.onInit(function () {
     if (!isAssessment()) return;
     rangy.init();
-    core.injectCSS("resources/css/annotations.css");
-
+    files.injectCSS("resources/css/annotations.css");
     var registeredHighlighters = [];
 
     function registerHighlightType(name) {
@@ -11,11 +10,11 @@ core.onInit(function () {
             ignoreWhiteSpace: true,
             tagName: "span",
             elementProperties: {
-                onmouseover: function (e) {
+                onmouseover: function(e) {
                     var highlight = $(this);
                     if (highlight.attr("data-delete") === "visible") return;
 
-                    var cleanup = function () {
+                    var cleanup = function() {
                         highlight.attr("data-delete", "hidden");
                         annnotationDelete.remove();
                         clearInterval(counter);
@@ -23,30 +22,24 @@ core.onInit(function () {
 
                     var highlightRange = highlighter.getHighlightForElement(highlight[0]);
                     if (!highlightRange) return;
-                    var highlightGroup = highlightRange.getRange().getNodes([1], function (node) {
+                    var highlightGroup = highlightRange.getRange().getNodes([1], function(node) {
                         return node.nodeName === "SPAN" && node.className.indexOf("annotation-") > -1 && node.getBoundingClientRect().top > 0;
-                    }).map(function (_) {
-                        return $(_)
-                    });
+                    }).map(function(_) { return $(_) });
 
                     var firstHighlight = highlightGroup[0];
-                    highlightGroup.forEach(function (item) {
-                        firstHighlight = firstHighlight.offset().top > item.offset().top ? item : firstHighlight
-                    });
+                    highlightGroup.forEach(function(item) { firstHighlight = firstHighlight.offset().top > item.offset().top ? item : firstHighlight });
 
-                    var offset = $("#main-inner").offset();
-                    var annnotationDelete = $(core.readTemplate("resources/templates/annotation-delete.html"))
-                        .css({
-                            top: firstHighlight.offset().top - offset.top + 30,
-                            left: firstHighlight.offset().left - offset.left
-                        })
-                        .click(function () {
+                    var inner = $("#main-inner");
+                    var offset = inner.offset();
+                    var annnotationDelete = $(files.readTemplate("resources/templates/annotation-delete.html"))
+                        .css({top: firstHighlight.offset().top - offset.top + 85, left: firstHighlight.offset().left - offset.left})
+                        .click(function() {
                             cleanup();
                             highlighter.removeHighlights([highlighter.getHighlightForElement(highlight[0])]);
                             highlight.contents().unwrap();
                         });
 
-                    var hovered = function () {
+                    var hovered = function() {
                         if (annnotationDelete.is(":hover")) return true;
                         for (var i = 0; i <= highlightGroup.length; i++) {
                             if (!highlightGroup[0].is(":hover")) continue;
@@ -56,19 +49,19 @@ core.onInit(function () {
                     };
 
                     var unfocusedCount = 0;
-                    var counter = setInterval(function () {
-                        unfocusedCount += hovered() ? -unfocusedCount : 50;
+                    var counter = setInterval(function() {
+                        unfocusedCount += hovered()  ? -unfocusedCount : 50;
                         if (unfocusedCount >= 500) cleanup();
                     }, 50);
                     highlight.attr("data-delete", "visible");
-                    $("#main-inner").prepend(annnotationDelete);
+                    inner.prepend(annnotationDelete);
                 }
             }
         }));
         registeredHighlighters[name] = highlighter;
     }
 
-    $("body").mouseup(function () {
+    $("body").mouseup(function() {
         if (Object.keys(registeredHighlighters).indexOf(activeTool) <= -1) return;
         registeredHighlighters[activeTool].highlightSelection("annotation-" + activeTool, {
             containerElementId: "main-inner",

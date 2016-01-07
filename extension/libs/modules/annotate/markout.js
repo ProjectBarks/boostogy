@@ -1,6 +1,6 @@
-core.onInit(function () {
+app.onInit(function () {
     if (!isAssessment()) return;
-    core.injectCSS("resources/css/annotation-markout.css");
+    files.injectCSS("resources/css/annotation-markout.css");
 
     $("tr").bindFirst("click", function (e) {
         var item = $(this);
@@ -14,7 +14,7 @@ core.onInit(function () {
         e.stopImmediatePropagation();
     });
 
-    core.onUpdate(function () {
+    app.onUpdate(function () {
         var togglables = $("tr:not(.marked) > .form-radio-answer, tr:not(.marked) > .form-checkbox-option").parent();
         if (activeTool === "markout") {
             togglables.addClass("markoutable");

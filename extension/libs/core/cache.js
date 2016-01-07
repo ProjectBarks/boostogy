@@ -73,11 +73,11 @@ function Cache() {
     };
 
     this.getCurrentUserId = function () {
-        return this.currentUserId;
+        return currentUserId;
     };
 
     this.initUser = function (id, name) {
-        this.currentUserId = id;
+        currentUserId = id;
         this.getUser(id, function (user) {
             if (user) {
                 cachedUser = user;

@@ -1,7 +1,7 @@
-core.onInit(function () {
+app.onInit(function () {
     if (!isAssessment()) return;
-    core.injectCSS("resources/css/jquery-ui.css");
-    core.injectCSS("resources/css/annotation-note.css");
+    files.injectCSS("resources/css/jquery-ui.css");
+    files.injectCSS("resources/css/annotation-note.css");
 
     $("body").click(function (e) {
         if (activeTool !== "comment") return;
@@ -9,7 +9,7 @@ core.onInit(function () {
         if (rangy.getSelection().length > 0) return;
 
         var wrapper = $("#main-inner");
-        var note = $(core.readTemplate("resources/templates/annotation-note.html"))
+        var note = $(files.readTemplate("resources/templates/annotation-note.html"))
             .css({
                 left: e.pageX - wrapper.offset().left,
                 top: Math.max(e.pageY - wrapper.offset().top, 0),

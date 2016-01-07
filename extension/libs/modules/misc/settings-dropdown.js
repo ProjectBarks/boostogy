@@ -1,9 +1,9 @@
-core.onInit(function () {
-    core.injectCSS("resources/css/settings-list-item.css");
-    core.injectCSS("resources/css/settings-popup.css");
+app.onInit(function () {
+    files.injectCSS("resources/css/settings-list-item.css");
+    files.injectCSS("resources/css/settings-popup.css");
 
     function showPopup(onSubmit) {
-        var template = core.readTemplate("resources/templates/settings-popup.html");
+        var template = files.readTemplate("resources/templates/settings-popup.html");
         new Popup("Boostogy Settings", template, "Save Changes", "Cancel", onSubmit).show();
     }
 
@@ -23,7 +23,7 @@ core.onInit(function () {
         var popup = $(".boostogy-settings");
         cache.getUserIds(function (ids) {
             var userList = popup.find(".user-list");
-            var userTemplate = core.readTemplate("resources/templates/settings-popup-user.html");
+            var userTemplate = files.readTemplate("resources/templates/settings-popup-user.html");
             ids.forEach(function (id) {
                 cache.getUser(id, function (user) {
                     userList.append($(userTemplate
@@ -50,5 +50,5 @@ core.onInit(function () {
     $("#settings-menu-dropdown")
         .find("> li:last")
         .prev()
-        .after($(core.readTemplate("resources/templates/settings-list-item.html")).click(onClick));
+        .after($(files.readTemplate("resources/templates/settings-list-item.html")).click(onClick));
 });

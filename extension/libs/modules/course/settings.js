@@ -19,8 +19,8 @@ function disableAll() {
     activeDropdowns = [];
 }
 
-core.onInit(function () {
-    var dropdownRaw = core.readTemplate("resources/templates/course-dropdown.html");
+app.onInit(function () {
+    var dropdownRaw = files.readTemplate("resources/templates/course-dropdown.html");
 
     $("body").click(function () {
         disableAll();

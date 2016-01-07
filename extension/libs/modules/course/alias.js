@@ -1,6 +1,6 @@
 var ALIAS = "course_alias";
 
-core.onInit(function () {
+app.onInit(function () {
     cache.get(ALIAS, {}, function (aliases) {
         $(".courses-listing li").each(function () {
             var id = $(this).children(".sections-list").first().children().first().attr("id");
@@ -10,7 +10,7 @@ core.onInit(function () {
             $(this).find(".course-title").append(preview);
 
             $(this).find(".course-actions .action-links").append($("<li class=\"course-rename\"><a>Rename</a></li>").click(function (event) {
-                new Popup("Rename Course", core.readTemplate("resources/templates/course-alias-input.html"), "Apply", null, function (data) {
+                new Popup("Rename Course", files.readTemplate("resources/templates/course-alias-input.html"), "Apply", null, function (data) {
                     cache.get(ALIAS, {}, function (aliases) {
                         if (data.alias.length <= 0) {
                             if (id in aliases) {
@@ -32,7 +32,7 @@ core.onInit(function () {
     });
 });
 
-core.onUpdate(function () {
+app.onUpdate(function () {
     cache.get(ALIAS, {}, function (aliases) {
         $(".courses-listing > .sections-list > .section-item").each(function () {
             var course = $(this);

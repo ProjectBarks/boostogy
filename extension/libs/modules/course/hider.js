@@ -1,5 +1,5 @@
 var HIDDEN = "course_hidden";
-core.onInit(function () {
+app.onInit(function () {
     cache.get(HIDDEN, [], function (hidden) {
         $(".courses-listing > li").each(function () {
             var id = $(this).children(".sections-list").first().children().first().attr("id");
@@ -31,7 +31,7 @@ core.onInit(function () {
     });
 });
 
-core.onUpdate(function () {
+app.onUpdate(function () {
     cache.get(HIDDEN, [], function (hidden) {
         $(".courses-listing > .sections-list > .section-item").each(function () {
             var elm = $(this);

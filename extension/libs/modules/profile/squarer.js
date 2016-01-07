@@ -1,4 +1,4 @@
-core.onUpdate(function () {
+app.onUpdate(function () {
     cache.get("show_circles", true, function (showCircles) {
         if (!showCircles) {
             return;

@@ -1,14 +1,14 @@
 var activeTool = "";
 
 function isAssessment() {
-    return window.location.href.indexOf("*/assignment/*/assessment") > 0 && $("#s-assessment-question-fill-form").size() > 0;
+    return window.location.href.match(/.*\/assignment\/.*\/assessment/g) && $("#s-assessment-question-fill-form").size() > 0;
 }
 
-core.onInit(function () {
+app.onInit(function () {
     if (!isAssessment()) return;
-    core.injectCSS("resources/css/annotation-sidebar.css");
+    files.injectCSS("resources/css/annotation-sidebar.css");
 
-    var sidebar = $(core.readTemplate("resources/templates/annotation-tools.html"));
+    var sidebar = $(files.readTemplate("resources/templates/annotation-tools.html"));
     $("#container").prepend(sidebar);
     $(window).scroll(function () {
         sidebar.css("top", $(this).scrollTop());

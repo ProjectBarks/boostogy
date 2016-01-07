@@ -1,4 +1,4 @@
-core.onInit(function () {
+app.onInit(function () {
     cache.get("auto_load", true, function (autoload) {
         if (!autoload) {
             return;

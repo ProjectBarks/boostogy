@@ -1,4 +1,4 @@
-core.onInit(function () {
+app.onInit(function () {
     var profile = $("#profile").find("> a");
     if (profile.size() <= 0) {
         return;

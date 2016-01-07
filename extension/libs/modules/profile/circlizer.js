@@ -1,7 +1,7 @@
-core.onInit(function () {
+app.onInit(function () {
     cache.get("show_circles", true, function (showCircles) {
         if (showCircles) {
-            core.injectCSS("resources/css/circles.css");
+            files.injectCSS("resources/css/circles.css");
         }
     });
 });

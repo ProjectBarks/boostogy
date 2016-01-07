@@ -22,7 +22,7 @@ function Popup(title, body, ok, cancel, onOkListener) {
         lastPopup = this;
         var _this = this;
 
-        var popup = $(core.loadFile("resources/templates/base-popup.html")
+        var popup = $(files.loadFile("resources/templates/base-popup.html")
             .replace("${title}", title || "Untitled")
             .replace("${ok}", ok || "Ok")
             .replace("${cancel}", cancel || "Cancel")

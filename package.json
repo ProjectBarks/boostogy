@@ -1,0 +1,17 @@
+{
+  "name": "Boostogy",
+  "version": "3.0.0",
+  "dependencies": {
+    "json": "9.0.x",
+    "bower": "1.7.x",
+    "bower-installer": "1.2.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProjectBarks/boostogy.git"
+  },
+  "scripts": {
+    "start": "sh setup.sh"
+  },
+  "license": "MIT"
+}

@@ -1,4 +1,4 @@
-core.onInit(function () {
+app.onInit(function () {
     if (!isAssessment()) return;
 
     $("tr").bindFirst("click", function (e) {
@@ -6,7 +6,7 @@ core.onInit(function () {
         e.stopImmediatePropagation();
     });
 
-    core.onUpdate(function () {
+    app.onUpdate(function () {
         $(":radio, :checkbox").each(function () {
             $(this).prop("disabled", activeTool !== "mouse");
         });

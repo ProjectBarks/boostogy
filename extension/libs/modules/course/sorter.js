@@ -12,7 +12,7 @@ function getCourseLocation(courses, courseID) {
 
 var tempCourseOrder = [];
 var waitForReload = false;
-core.onUpdate(function () {
+app.onUpdate(function () {
     if (waitForReload) return;
     function idsToList(items) {
         return items.map(function () {
