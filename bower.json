@@ -3,21 +3,23 @@
   "dependencies": {
     "rangy": "~1.3.0",
     "jquery": "~2.1.4",
-    "jquery-ui": "~1.11.4"
+    "jquery-ui": "~1.11.4",
+    "bind-first": "https://github.com/private-face/jquery.bind-first.git#~0.2.3"
   },
-  "install" : {
-    "path": {
-      "js": "extension/libs/vendors",
-      "css": "extension/resources/css"
-    },
+  "install": {
+    "path": "extension/vendor",
     "sources": {
       "jquery-ui": [
-        "bower/jquery/dist/jquery.js",
-        "bower/jquery-ui/jquery-ui.js",
+        "bower/jquery-ui/themes/base/jquery-ui.css",
+        "bower/jquery-ui/jquery-ui.js"
+      ],
+      "jquery": "bower/jquery/dist/jquery.js",
+      "rangy": [
         "bower/rangy/rangy-core.js",
         "bower/rangy/rangy-classapplier.js",
         "bower/rangy/rangy-highlighter.js"
-      ]
+      ],
+      "bind-first": "bower/bind-first/dev/jquery.bind-first.js"
     }
   }
 }

@@ -1,10 +1,11 @@
 {
   "name": "Boostogy",
-  "version": "3.0.0",
+  "version": "2.0.0",
   "dependencies": {
-    "json": "9.0.x",
     "bower": "1.7.x",
-    "bower-installer": "1.2.x"
+    "bower-installer": "1.2.x",
+    "chrome-tailor": "0.0.5",
+    "json": "9.0.x"
   },
   "repository": {
     "type": "git",

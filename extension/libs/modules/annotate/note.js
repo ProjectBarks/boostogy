@@ -1,6 +1,6 @@
 app.onInit(function () {
     if (!isAssessment()) return;
-    files.injectCSS("resources/css/jquery-ui.css");
+    files.injectCSS("vendor/jquery-ui/jquery-ui.css");
     files.injectCSS("resources/css/annotation-note.css");
 
     $("body").click(function (e) {

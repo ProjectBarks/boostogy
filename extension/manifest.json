@@ -1,6 +1,6 @@
 {
   "name": "Boostogy",
-  "version": "3.0.0",
+  "version": "2.0.0",
   "manifest_version": 2,
   "description": "Boostogy updates schoology to be more user friendly and intuitive!",
   "icons": {
@@ -30,12 +30,12 @@
         "*://schoology.dasd.org/*"
       ],
       "js": [
-        "libs/vendor/jquery/jquery.js",
-        "libs/vendor/jquery-ui/jquery-ui.js",
-        "libs/vendor/jquery-ui/jquery-bind-first.js",
-        "libs/vendor/rangy/rangy-core.js",
-        "libs/vendor/rangy/rangy-classapplier.js",
-        "libs/vendor/rangy/rangy-highlighter.js",
+        "vendor/jquery/jquery.js",
+        "vendor/jquery-ui/jquery-ui.js",
+        "vendor/bind-first/jquery.bind-first.js",
+        "vendor/rangy/rangy-core.js",
+        "vendor/rangy/rangy-classapplier.js",
+        "vendor/rangy/rangy-highlighter.js",
         "libs/core/core.js",
         "libs/core/files.js",
         "libs/core/cache.js",
