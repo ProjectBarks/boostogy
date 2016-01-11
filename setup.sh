@@ -6,3 +6,4 @@ mv extension/manifest_new.json extension/manifest.json
 
 bower install
 bower-installer
+zip -r extension.zip extension
