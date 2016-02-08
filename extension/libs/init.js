@@ -1,4 +1,7 @@
 $(function () {
+    if ($("#copyright").text().toLowerCase().indexOf("schoology") <= -1) {
+        return;
+    }
     console.log("Initializing boostogy...");
 
     function executeRunnables(runnables) {

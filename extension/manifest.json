@@ -1,6 +1,6 @@
 {
   "name": "Boostogy",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "manifest_version": 2,
   "description": "Boostogy updates schoology to be more user friendly and intuitive!",
   "icons": {
@@ -15,9 +15,6 @@
     "persistent": true
   },
   "permissions": [
-    "clipboardRead",
-    "clipboardWrite",
-    "contextMenus",
     "storage",
     "webRequest",
     "webRequestBlocking",
@@ -26,8 +23,10 @@
   "content_scripts": [
     {
       "matches": [
-        "*://app.schoology.com/*",
-        "*://schoology.dasd.org/*"
+        "<all_urls>"
+      ],
+      "include_globs": [
+        "*schoology*"
       ],
       "js": [
         "vendor/jquery/jquery.js",
@@ -53,13 +52,12 @@
         "libs/modules/misc/autoload.js",
         "libs/modules/misc/popup-scroll-lock.js",
         "libs/modules/misc/settings-dropdown.js",
+        "libs/modules/misc/hide-overdue.js",
         "libs/modules/profile/squarer.js",
         "libs/modules/profile/circlizer.js",
         "libs/init.js"
       ],
-      "css": [
-        "resources/css/style.css"
-      ]
+      "css": []
     }
   ],
   "web_accessible_resources": [

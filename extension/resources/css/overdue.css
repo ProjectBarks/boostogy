@@ -1,0 +1,27 @@
+.overdue-toggle > h3 > .toggle  {
+    float: right;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.overdue-toggle.overdue-show > h3 > .toggle {
+    width: 10px;
+    height: 2px;
+    background: #333;
+}
+
+.overdue-toggle > h3 {
+    cursor: pointer;
+}
+
+.overdue-toggle.overdue-hide > h3 > .toggle {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+}
+
+.overdue-toggle.overdue-hide > .upcoming-list {
+    display: none;
+}
